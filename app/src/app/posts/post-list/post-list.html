@@ -3,35 +3,38 @@
 <ul class="post-list">
   @for (post of posts(); track post.id) {
     <li class="post-row">
-      <a class="post-title" [routerLink]="['/posts', post.id]">{{ post.title }}</a>
-      <span class="post-meta">
-        <time class="post-date" [attr.datetime]="post.date">{{ post.date }}</time>
-        <a
-          class="post-pdf-link"
-          [href]="post.pdfUrl"
-          [attr.aria-label]="'PDF version of ' + post.title + ' (coming soon)'"
-          title="PDF version (coming soon)"
-          rel="noopener"
-          (click)="$event.preventDefault()"
-        >
-          <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path
-              d="M6 2h8l6 6v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M14 2v6h6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
-      </span>
+      <div class="post-header">
+        <a class="post-title" [routerLink]="['/posts', post.id]">{{ post.title }}</a>
+        <span class="post-meta">
+          <time class="post-date" [attr.datetime]="post.date">{{ post.date }}</time>
+          <a
+            class="post-pdf-link"
+            [href]="post.pdfUrl"
+            [attr.aria-label]="'PDF version of ' + post.title + ' (coming soon)'"
+            title="PDF version (coming soon)"
+            rel="noopener"
+            (click)="$event.preventDefault()"
+          >
+            <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M6 2h8l6 6v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 2v6h6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+      <p class="post-description">{{ post.description }}</p>
     </li>
   }
 </ul>
