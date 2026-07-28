@@ -22,6 +22,10 @@ echo "Installing Playwright and Chromium browser..."
 npm install -g playwright
 npx --yes playwright install --with-deps chromium
 
+echo "Linking Chromium for VS Code's Chrome debug configs..."
+chromium_dir="$(find "$HOME/.cache/ms-playwright" -maxdepth 1 -type d -name 'chromium-*' | sort -V | tail -n1)"
+sudo ln -sf "$chromium_dir/chrome-linux64/chrome" /usr/local/bin/playwright-chromium
+
 echo "Wiring bash history to persistent volume..."
 mkdir -p /home/node/commandhistory
 echo 'export HISTFILE=/home/node/commandhistory/.bash_history' >> /home/node/.bashrc

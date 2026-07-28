@@ -1,0 +1,11 @@
+<a class="back-link" routerLink="/">&larr; Back to posts</a>
+
+@if (post(); as post) {
+  <article class="post-detail">
+    <h1 class="post-detail-title">{{ post.title }}</h1>
+    <time class="post-detail-date" [attr.datetime]="post.date">{{ post.date }}</time>
+    <p class="post-detail-placeholder">Content coming soon.</p>
+  </article>
+} @else {
+  <p class="post-detail-placeholder">Post not found.</p>
+}
