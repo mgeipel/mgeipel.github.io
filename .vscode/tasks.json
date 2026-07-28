@@ -4,25 +4,9 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "start",
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "Changes detected"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation (complete|failed)"
-          }
-        }
-      }
-    },
-    {
-      "type": "npm",
       "script": "start:devcontainer",
+      "path": "app",
+      "label": "npm: start:devcontainer",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -41,6 +25,8 @@
     {
       "type": "npm",
       "script": "test",
+      "path": "app",
+      "label": "npm: test",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
