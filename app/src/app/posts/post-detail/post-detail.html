@@ -19,7 +19,13 @@
       >
     }
     @if (content(); as html) {
-      <div class="post-detail-content" [innerHTML]="html"></div>
+      <div
+        #contentEl
+        class="post-detail-content"
+        [innerHTML]="html"
+        (click)="onContentClick($event)"
+        (keydown)="onContentKeydown($event)"
+      ></div>
     } @else {
       <p class="post-detail-placeholder">Content coming soon.</p>
     }
@@ -27,3 +33,10 @@
 } @else {
   <p class="post-detail-placeholder">Post not found.</p>
 }
+
+<dialog #lightbox class="figure-lightbox" aria-label="Enlarged diagram" (click)="onLightboxClick($event)" (close)="onLightboxClose()">
+  @if (lightboxContent(); as svg) {
+    <div class="figure-lightbox-content" [innerHTML]="svg"></div>
+  }
+  <button type="button" class="figure-lightbox-close" (click)="lightbox.close()" aria-label="Close">&times;</button>
+</dialog>
