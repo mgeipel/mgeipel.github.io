@@ -4,7 +4,25 @@
   <article class="post-detail">
     <h1 class="post-detail-title">{{ post.title }}</h1>
     <time class="post-detail-date" [attr.datetime]="post.date">{{ post.date }}</time>
-    <p class="post-detail-placeholder">Content coming soon.</p>
+    <a
+      class="post-detail-license"
+      href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      target="_blank"
+      rel="noopener license"
+    >
+      <img ngSrc="by_nc_nd.svg" width="120" height="42" alt="Licensed under CC BY-NC-ND 4.0" />
+    </a>
+    <br />
+    @if (post.pdfUrl !== '#') {
+      <a class="post-detail-pdf-link" [href]="post.pdfUrl" target="_blank" rel="noopener"
+        >Download PDF</a
+      >
+    }
+    @if (content(); as html) {
+      <div class="post-detail-content" [innerHTML]="html"></div>
+    } @else {
+      <p class="post-detail-placeholder">Content coming soon.</p>
+    }
   </article>
 } @else {
   <p class="post-detail-placeholder">Post not found.</p>

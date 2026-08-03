@@ -1,33 +1,21 @@
 import { Injectable, signal } from '@angular/core';
 import { Post } from './post.model';
 
-const MOCK_POSTS: Post[] = [
+const POSTS: Post[] = [
   {
-    id: 'signals-are-not-magic',
-    title: 'Signals Are Not Magic (But They Are Close)',
-    description: 'A look at what makes signals click, and where the illusion breaks down.',
-    date: '2026-07-21',
-    pdfUrl: '#',
-  },
-  {
-    id: 'why-i-rewrote-my-blog-again',
-    title: 'Why I Rewrote My Blog Again',
-    description: 'The third rewrite in as many years, and what stuck this time.',
-    date: '2026-06-30',
-    pdfUrl: '#',
-  },
-  {
-    id: 'notes-on-standalone-everything',
-    title: 'Notes on Standalone Everything',
-    description: 'Dropping NgModules across a real app and what actually changed.',
-    date: '2026-06-02',
-    pdfUrl: '#',
+    id: 'agentic-coding',
+    title: "Agentic Software Development: Take the Director's Chair",
+    description:
+      "Why 'coding agent' undersells the job, and what it means to direct rather than micromanage AI-assisted development.",
+    date: '2026-08-03',
+    pdfUrl: '/post-files/agentic-coding.pdf',
+    contentUrl: '/post-files/agentic-coding.html',
   },
 ];
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
-  private readonly posts = signal<Post[]>(MOCK_POSTS);
+  private readonly posts = signal<Post[]>(POSTS);
 
   readonly allPosts = this.posts.asReadonly();
 
