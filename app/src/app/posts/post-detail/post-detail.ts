@@ -60,7 +60,11 @@ export class PostDetail {
   // of Angular's template and can't bind (click)/(keydown) individually —
   // delegate from the wrapping div instead.
   protected onContentClick(event: MouseEvent): void {
-    this.tryOpenLightbox(event.target as Element);
+    const target = event.target as Element;
+    if (this.tryOpenLightbox(target)) {
+      return;
+    }
+    this.tryScrollToAnchor(target, event);
   }
 
   protected onContentKeydown(event: KeyboardEvent): void {
@@ -80,6 +84,31 @@ export class PostDetail {
 
   protected onLightboxClose(): void {
     this.lightboxContent.set(null);
+  }
+
+  // The article's cross-reference links are plain "#id" anchors from the
+  // LaTeX conversion. With the app's `<base href="/">`, the browser would
+  // resolve those against the base URL instead of the current route,
+  // sending readers back to "/#id" (the post list) — so we scroll manually.
+  private tryScrollToAnchor(target: Element, event: MouseEvent): boolean {
+    const anchor = target.closest('a[href^="#"]');
+    if (!anchor) {
+      return false;
+    }
+    const id = anchor.getAttribute('href')!.slice(1);
+    const heading = this.contentEl()?.nativeElement.querySelector(`#${CSS.escape(id)}`);
+    if (!heading) {
+      return false;
+    }
+    event.preventDefault();
+    heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // `history.pushState` resolves a bare "#id" string against the document's
+    // *base* URL too, so build the target from `location.href` instead to
+    // keep the current pathname intact.
+    const url = new URL(location.href);
+    url.hash = id;
+    history.pushState(history.state, '', url);
+    return true;
   }
 
   private tryOpenLightbox(target: Element): boolean {

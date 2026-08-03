@@ -21,10 +21,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: app
+
+      - name: Build
+        run: npm run build
+        working-directory: app
+
+      - name: Add SPA fallback for GitHub Pages routing
+        run: cp app/dist/app/browser/index.html app/dist/app/browser/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: pages
+          path: app/dist/app/browser
 
   deploy:
     needs: build

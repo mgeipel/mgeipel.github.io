@@ -67,6 +67,7 @@
   font-family: var(--font-family-serif);
   font-size: 1.0625rem;
   line-height: 1.65;
+  counter-reset: tex-section;
 
   ::ng-deep {
     // The fragment repeats the post title as its own heading; the page already shows it above.
@@ -76,16 +77,29 @@
 
     h2.tex-section-heading {
       margin: 2.5rem 0 1rem;
+      scroll-margin-top: 4.5rem;
       font-family: var(--font-family-base);
       font-size: 1.375rem;
       font-weight: 600;
+      counter-reset: tex-subsection;
+      counter-increment: tex-section;
+
+      &::before {
+        content: counter(tex-section) '. ';
+      }
     }
 
     h3.tex-subsection-heading {
       margin: 2rem 0 0.75rem;
+      scroll-margin-top: 4.5rem;
       font-family: var(--font-family-base);
       font-size: 1.125rem;
       font-weight: 600;
+      counter-increment: tex-subsection;
+
+      &::before {
+        content: counter(tex-section) '.' counter(tex-subsection) '. ';
+      }
     }
 
     p {
@@ -137,6 +151,7 @@
     figure.tex-marginfigure {
       display: block;
       margin: 1rem 0;
+      scroll-margin-top: 4.5rem;
       padding: 0.75rem 1rem;
       border-left: 3px solid var(--color-border);
       font-family: var(--font-family-base);
