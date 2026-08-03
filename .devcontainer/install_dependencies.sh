@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-workspace_dir="/workspaces/mgeipel"
+workspace_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 current_user="$(id -un)"
 current_group="$(id -gn)"
 
