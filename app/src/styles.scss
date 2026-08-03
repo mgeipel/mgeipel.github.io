@@ -11,6 +11,12 @@
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
