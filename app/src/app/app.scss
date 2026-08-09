@@ -29,6 +29,20 @@
   font-weight: 600;
 }
 
+.toolbar-linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+  color: var(--color-text-muted);
+  border-radius: 50%;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-accent);
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;
