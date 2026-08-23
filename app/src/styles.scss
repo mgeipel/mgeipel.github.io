@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+// Imported globally (not scoped to post-detail's component styles) because KaTeX's
+// render output is built via raw DOM APIs, not Angular templates, so it never gets
+// the `_ngcontent` attribute that emulated view encapsulation relies on to scope CSS.
+@use 'katex/dist/katex.min.css';
+
 :root {
   --color-background: #ffffff;
   --color-border: #e0e0e0;

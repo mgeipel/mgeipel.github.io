@@ -147,6 +147,10 @@
       }
     }
 
+    a.tex-url {
+      overflow-wrap: anywhere;
+    }
+
     aside.tex-marginnote,
     figure.tex-marginfigure {
       display: block;
@@ -167,13 +171,21 @@
         }
       }
 
-      svg {
+      svg,
+      img {
         display: block;
         max-width: 200px;
         height: auto;
         margin: 0 auto;
-        cursor: zoom-in;
         border-radius: 4px;
+      }
+
+      img + img {
+        margin-top: 0.5rem;
+      }
+
+      svg {
+        cursor: zoom-in;
         transition: box-shadow 0.15s ease;
 
         &:hover,

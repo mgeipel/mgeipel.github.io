@@ -12,6 +12,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import katex from 'katex';
 import { PostsService } from '../posts.service';
 
 @Component({
@@ -48,12 +49,32 @@ export class PostDetail {
     // real Angular elements — make them focusable/announced as buttons once
     // they land in the DOM, so the lightbox is reachable by keyboard too.
     afterRenderEffect(() => {
-      for (const svg of this.contentEl()?.nativeElement.querySelectorAll('figure.tex-marginfigure svg') ?? []) {
+      for (const svg of this.contentEl()?.nativeElement.querySelectorAll(
+        'figure.tex-marginfigure svg',
+      ) ?? []) {
         svg.setAttribute('tabindex', '0');
         svg.setAttribute('role', 'button');
         svg.setAttribute('aria-label', 'Enlarge diagram');
       }
+      for (const math of this.contentEl()?.nativeElement.querySelectorAll<HTMLElement>(
+        'span.tex-math',
+      ) ?? []) {
+        this.renderMath(math);
+      }
     });
+  }
+
+  // The LaTeX-to-HTML conversion leaves math as raw source (e.g. "\(F = Gm_1m_2/r^2\)")
+  // wrapped in a span instead of pre-rendered — render it client-side with KaTeX.
+  private renderMath(el: HTMLElement): void {
+    if (el.querySelector('.katex')) {
+      return;
+    }
+    const source = (el.textContent ?? '').trim();
+    const displayMode = source.startsWith('\\[') && source.endsWith('\\]');
+    const inline = source.startsWith('\\(') && source.endsWith('\\)');
+    const expression = displayMode || inline ? source.slice(2, -2) : source;
+    katex.render(expression, el, { throwOnError: false, displayMode });
   }
 
   // The article body is rendered via [innerHTML], so its elements aren't part
