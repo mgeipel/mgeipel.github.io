@@ -34,9 +34,17 @@
   <p class="post-detail-placeholder">Post not found.</p>
 }
 
-<dialog #lightbox class="figure-lightbox" aria-label="Enlarged diagram" (click)="onLightboxClick($event)" (close)="onLightboxClose()">
-  @if (lightboxContent(); as svg) {
-    <div class="figure-lightbox-content" [innerHTML]="svg"></div>
+<dialog
+  #lightbox
+  class="figure-lightbox"
+  aria-label="Enlarged figure"
+  (click)="onLightboxClick($event)"
+  (close)="onLightboxClose()"
+>
+  @if (lightboxContent(); as media) {
+    <div class="figure-lightbox-content" [innerHTML]="media"></div>
   }
-  <button type="button" class="figure-lightbox-close" (click)="lightbox.close()" aria-label="Close">&times;</button>
+  <button type="button" class="figure-lightbox-close" (click)="lightbox.close()" aria-label="Close">
+    &times;
+  </button>
 </dialog>

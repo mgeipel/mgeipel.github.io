@@ -178,13 +178,6 @@
         height: auto;
         margin: 0 auto;
         border-radius: 4px;
-      }
-
-      img + img {
-        margin-top: 0.5rem;
-      }
-
-      svg {
         cursor: zoom-in;
         transition: box-shadow 0.15s ease;
 
@@ -192,6 +185,10 @@
         &:focus-visible {
           box-shadow: 0 0 0 3px var(--color-border);
         }
+      }
+
+      img + img {
+        margin-top: 0.5rem;
       }
 
       figcaption {
@@ -233,11 +230,15 @@
 }
 
 .figure-lightbox-content {
-  ::ng-deep svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: calc(90vh - 4rem);
+  ::ng-deep {
+    svg,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: calc(90vh - 4rem);
+      object-fit: contain;
+    }
   }
 }
 

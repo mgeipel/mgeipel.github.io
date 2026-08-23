@@ -49,12 +49,15 @@ export class PostDetail {
     // real Angular elements — make them focusable/announced as buttons once
     // they land in the DOM, so the lightbox is reachable by keyboard too.
     afterRenderEffect(() => {
-      for (const svg of this.contentEl()?.nativeElement.querySelectorAll(
-        'figure.tex-marginfigure svg',
+      for (const media of this.contentEl()?.nativeElement.querySelectorAll<HTMLElement>(
+        'figure.tex-marginfigure svg, figure.tex-marginfigure img',
       ) ?? []) {
-        svg.setAttribute('tabindex', '0');
-        svg.setAttribute('role', 'button');
-        svg.setAttribute('aria-label', 'Enlarge diagram');
+        media.setAttribute('tabindex', '0');
+        media.setAttribute('role', 'button');
+        media.setAttribute(
+          'aria-label',
+          media instanceof HTMLImageElement ? `Enlarge image: ${media.alt}` : 'Enlarge diagram',
+        );
       }
       for (const math of this.contentEl()?.nativeElement.querySelectorAll<HTMLElement>(
         'span.tex-math',
@@ -133,11 +136,11 @@ export class PostDetail {
   }
 
   private tryOpenLightbox(target: Element): boolean {
-    const svg = target.closest('svg');
-    if (!svg || !svg.closest('figure.tex-marginfigure')) {
+    const media = target.closest('figure.tex-marginfigure svg, figure.tex-marginfigure img');
+    if (!media) {
       return false;
     }
-    this.lightboxContent.set(this.sanitizer.bypassSecurityTrustHtml(svg.outerHTML));
+    this.lightboxContent.set(this.sanitizer.bypassSecurityTrustHtml(media.outerHTML));
     this.lightbox()?.nativeElement.showModal();
     return true;
   }
