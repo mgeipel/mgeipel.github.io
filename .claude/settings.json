@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(chromium-cli --session blog-check)"
+      "Bash(chromium-cli --session blog-check)",
+      "Bash(npx ng *)"
     ]
   }
 }

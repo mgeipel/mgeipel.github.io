@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-maintained: update alongside src/app/posts/posts.service.ts when posts are added. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mgeipel.github.io/</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mgeipel.github.io/posts/ml-what-could-go-wrong/</loc>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://mgeipel.github.io/posts/how-much-data-do-you-need/</loc>
+    <lastmod>2026-08-23</lastmod>
+  </url>
+  <url>
+    <loc>https://mgeipel.github.io/posts/agentic-coding/</loc>
+    <lastmod>2026-08-03</lastmod>
+  </url>
+</urlset>

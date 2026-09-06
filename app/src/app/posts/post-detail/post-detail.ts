@@ -2,6 +2,7 @@ import {
   afterRenderEffect,
   Component,
   computed,
+  effect,
   ElementRef,
   inject,
   input,
@@ -14,6 +15,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import katex from 'katex';
 import { PostsService } from '../posts.service';
+import { SeoService } from '../../seo/seo.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -24,6 +26,7 @@ import { PostsService } from '../posts.service';
 export class PostDetail {
   private readonly postsService = inject(PostsService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly seo = inject(SeoService);
 
   readonly id = input.required<string>();
 
@@ -45,6 +48,18 @@ export class PostDetail {
   protected readonly lightboxContent = signal<SafeHtml | null>(null);
 
   constructor() {
+    effect(() => {
+      const post = this.post();
+      if (post) {
+        this.seo.setArticle({
+          id: post.id,
+          title: post.title,
+          description: post.description,
+          datePublished: post.date,
+        });
+      }
+    });
+
     // The article body is rendered via [innerHTML], so its diagrams aren't
     // real Angular elements — make them focusable/announced as buttons once
     // they land in the DOM, so the lightbox is reachable by keyboard too.
