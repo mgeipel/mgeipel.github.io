@@ -20,6 +20,15 @@ const POSTS: Post[] = [
     pdfUrl: '/post-files/how-much-data-do-you-need/how-much-data-do-you-need.pdf',
     contentUrl: '/post-files/how-much-data-do-you-need/how-much-data-do-you-need.html',
   },
+  {
+    id: 'ml-what-could-go-wrong',
+    title: 'Machine Learning: What Could Go Wrong?',
+    description:
+      'A field guide to how machine learning models fail in practice — from problem-definition exploits to distribution shift — and how to guard against each.',
+    date: '2026-09-06',
+    pdfUrl: '/post-files/ml-what-could-go-wrong/ml-what-could-go-wrong.pdf',
+    contentUrl: '/post-files/ml-what-could-go-wrong/ml-what-could-go-wrong.html',
+  },
 ];
 
 @Injectable({ providedIn: 'root' })
