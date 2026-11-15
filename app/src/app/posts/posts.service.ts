@@ -29,6 +29,15 @@ const POSTS: Post[] = [
     pdfUrl: '/post-files/ml-what-could-go-wrong/ml-what-could-go-wrong.pdf',
     contentUrl: '/post-files/ml-what-could-go-wrong/ml-what-could-go-wrong.html',
   },
+  {
+    id: 'industrial-machine-learning',
+    title: 'Why Industrial Machine Learning is Hard',
+    description:
+      'Industrial machine learning has some particular challenges such as scarce labels, skewed data, costly exploration and poor observability. Not all is lost, though: there are a number of techniques to tackle them.',
+    date: '2026-11-11',
+    pdfUrl: '/post-files/industrial-machine-learning/industrial-machine-learning.pdf',
+    contentUrl: '/post-files/industrial-machine-learning/industrial-machine-learning.html',
+  },
 ];
 
 @Injectable({ providedIn: 'root' })
