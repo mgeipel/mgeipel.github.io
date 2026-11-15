@@ -7,7 +7,6 @@ current_group="$(id -gn)"
 
 echo "Fixing node_modules permissions..."
 sudo chown -R "$current_user:$current_group" \
-  "$workspace_dir/node_modules" \
   "$HOME/.claude" \
   "$HOME/commandhistory"
  

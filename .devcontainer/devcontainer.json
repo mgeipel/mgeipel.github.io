@@ -6,13 +6,12 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
   "forwardPorts": [4200],
 
-
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
+    "ghcr.io/devcontainers/features/node:2.1.2": {
       "version": "24.15.0"
     },
     "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1.1.3": {}
   },
   "postCreateCommand": "bash .devcontainer/install_dependencies.sh",
 
@@ -22,14 +21,13 @@
       "extensions": [
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "angular.ng-template"      ]
+        "angular.ng-template"
+      ]
     }
   },
 
-
   "mounts": [
     "source=${devcontainerId}-claude-code-config,target=/home/node/.claude,type=volume",
-    "source=${devcontainerId}-claude-code-bashhistory,target=/home/node/commandhistory,type=volume",
-    "source=${devcontainerId}-nm,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    "source=${devcontainerId}-claude-code-bashhistory,target=/home/node/commandhistory,type=volume"
   ]
 }
